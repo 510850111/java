@@ -1,0 +1,21 @@
+package me.hekuan.regexDemo1;
+
+import java.util.Scanner;
+
+public class regexDemo1 {
+
+	public static void main(String[] args) {
+		//用正则表达式校验邮箱
+		@SuppressWarnings("resource")
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please input your email adress:");
+		String email = sc.nextLine();
+		
+		String regex = "[a-zA-Z_0-9]+@[a-zA-Z_0-9]+(\\.[a-zA-Z_0-9])+";
+		
+		boolean flag = email.matches(regex);
+		System.out.println(flag);
+
+	}
+
+}

@@ -1,0 +1,132 @@
+package me.hekuan;
+
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class Main extends Frame {
+
+	public static void main(String[] args) {
+
+		init();
+	}
+
+	/**
+	 * 初始化贪吃蛇的图形界面,包括Frame的大小和其他属性,监听键盘等等事件
+	 */
+	public static void init() {
+		Snake snake = new Snake();
+		Food food = new Food();
+		Ground ground = new Ground();
+		GamePanel gamePanel = new GamePanel();
+		Controller controller = new Controller(snake, food, ground, gamePanel);
+
+		while (snake == null || food == null || ground == null || gamePanel == null || controller == null) {
+			continue;
+		}
+
+		final JFrame frame = new JFrame("贪吃蛇0.0r01");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1005, 995);
+
+		// 创建菜单栏
+		MenuBar menuBar = new MenuBar();
+
+		// 创建菜单
+		Menu menu = new Menu("文件");
+		Menu menu2 = new Menu("游戏");
+		Menu menu3 = new Menu("设置");
+		Menu menu4 = new Menu("帮助");
+
+		// 创建菜单项
+		MenuItem menuItem5_exit = new MenuItem("退出");
+		final MenuItem newGame = new MenuItem("开始新游戏");
+		MenuItem pauseGame = new MenuItem("暂停游戏");
+		final MenuItem openControlPanel = new MenuItem("打开控制面板");
+		MenuItem help = new MenuItem("帮助文件");
+		MenuItem about = new MenuItem("关于");
+		
+
+		// 添加菜单项到菜单
+		menu.add(menuItem5_exit);
+		
+		menu2.add(newGame);
+		menu2.add(pauseGame);
+		menu3.add(openControlPanel);
+		
+		menu4.add(help);
+		menu4.add(about);
+		
+		menuBar.add(menu);
+		menuBar.add(menu2);
+		menuBar.add(menu3);
+		menuBar.add(menu4);
+
+		// 把菜单栏添加进窗体
+		frame.setMenuBar(menuBar);
+
+		// 对菜单项的应答
+		menuItem1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setTitle(menuItem1.getLabel());
+			}
+		});
+
+		menuItem2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setTitle(menuItem2.getLabel());
+			}
+		});
+
+
+		menuItem4_openNotepad.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Runtime runtime = Runtime.getRuntime();
+				try {
+					runtime.exec("notepad");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+			}
+		});
+
+		menuItem5_exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+
+		frame.add(gamePanel, BorderLayout.CENTER);
+
+		gamePanel.addKeyListener(controller);
+		snake.addSnakleListener(controller);
+
+		frame.addKeyListener(controller);
+
+		UI.setJFrameLocateCenter(frame);
+
+		frame.setResizable(false);
+		frame.setVisible(true);
+		controller.newGame();
+		
+	}
+
+}

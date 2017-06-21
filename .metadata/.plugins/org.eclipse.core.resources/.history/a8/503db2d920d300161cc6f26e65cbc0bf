@@ -1,0 +1,21 @@
+package test;
+
+public class B {
+
+	public static void main(String[] args) {
+		
+
+	}
+	
+	public String StringBuilder() {
+		
+		return null;
+		
+	}
+	
+
+}
+
+class Random{
+	
+}

@@ -1,0 +1,72 @@
+package test;
+
+import cn.itcast_03.Student;
+
+public class a {
+
+	public static void main(String[] args) {
+		
+	}
+
+	public String band;
+
+}
+
+class Computer {
+	String band = "";
+	String type = "";
+	int price = 0 ;
+	int memorySize = 0 ;
+	
+	public String getBand() {
+		return band;
+	}
+	
+	public void setBand(String band) {
+		this.band = band;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	
+	public int getMemorySize() {
+		return memorySize;
+	}
+	
+	public void setMemorySize(int memorySize) {
+		this.memorySize = memorySize;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		a other = (a) obj;
+		if (band != other.band)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+	
+}

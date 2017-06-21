@@ -1,0 +1,17 @@
+package test;
+
+public class a {
+
+	public static void main(String[] args) {
+		
+	}
+
+}
+
+class Computer {
+	String band = "";
+	String type = "";
+	int price = 0 ;
+	int memorySize = 0 ;
+	
+}

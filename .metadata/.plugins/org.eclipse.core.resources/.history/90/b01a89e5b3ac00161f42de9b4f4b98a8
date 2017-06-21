@@ -1,0 +1,100 @@
+package me.hekuan;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+
+public class Ground {
+
+	public static final Color DEFAULT_GRIDDING_COLOR = Color.LIGHT_GRAY;
+
+	/* 网格的颜色 */
+	private Color griddingColor = DEFAULT_GRIDDING_COLOR;
+	
+	/* 是否画网格的开关 */
+	private boolean isDrawGridding = false;
+	
+	
+	private int[][] rocks = new int[Global.WIDTH][Global.HEIGHT];
+
+	public Ground() {
+
+		for (int x = 0; x < Global.WIDTH; x++) {
+			rocks[x][0] =1;
+			rocks[x][Global.HEIGHT -1] =1 ;
+		}
+		
+		for(int y = 0;y<Global.HEIGHT;y++){
+			rocks[0][y]= 1;
+			rocks[Global.HEIGHT +1][y] =1;
+		}
+
+	}
+
+	public boolean isSnakeEatRock(Snake snake) {
+		System.out.println("Ground isSnakeEatRock");
+		for (int x = 0; x < Global.WIDTH; x++) {
+			for (int y = 0; y < Global.HEIGHT; y++) {
+				if (rocks[x][y] == 1 && x == snake.getHead().x && y == snake.getHead().y) {
+					System.out.println("Ground SnakeEatRock!!!!!!!!!!!!!");
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	public void drawMe(Graphics g) {
+		System.out.println("Ground drawMe");
+
+		for (int x = 0; x < Global.WIDTH; x++) {
+			for (int y = 0; y < Global.HEIGHT; y++) {
+				if (rocks[x][y] == 1) {
+					g.setColor(Color.DARK_GRAY);
+					g.fill3DRect(x * Global.CELL_SIZE, y * Global.CELL_SIZE, Global.CELL_SIZE, Global.CELL_SIZE, true);
+				}
+				
+				//画网格
+				g.setColor(griddingColor);
+				drawGridding(g, x * Global.CELL_SIZE, y* Global.CELL_SIZE, Global.CELL_SIZE,Global.CELL_SIZE);
+//				drawGridding(g, Global.CELL_SIZE, y, width, height);
+			}
+		}
+	}
+	
+	/**
+	 * 
+	 * 画网格,有默认颜色,可以先设置网格的颜色
+	 * @param Graphics g
+	 * 				传入图形的源
+	 * @param x
+	 * 				x坐标
+	 *@param y
+	 *				y坐标
+	 *@param width
+	 *				宽度
+	 *@param height
+	 *				高度
+	 */
+	public void drawGridding(Graphics g ,int x,int y, int width,int height) {
+		g.fillRect(x, y, width, height);
+	}
+	
+	/**
+	 * 设置网格颜色
+	 * @param Color griddingColor
+	 * */
+	public void setGriddingColor(Color griddingColor) {
+		this.griddingColor = griddingColor;
+	}
+	
+	/**
+	 * 得到网格颜色
+	 * @return Color griddingColor
+	 * */
+	public Color getGriddingColor() {
+		return griddingColor;
+	}
+	
+}

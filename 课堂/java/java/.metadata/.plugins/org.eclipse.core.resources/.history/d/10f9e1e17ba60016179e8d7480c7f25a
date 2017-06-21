@@ -1,0 +1,25 @@
+
+
+public class TEXT4 {
+	private static char[] num = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s'};
+	private static char[] nums;
+	public static void main(String[] args) {
+		init();
+		solve();
+		disp();
+	}
+
+	private static void init() {
+		for(int i = 0;i < 52;i++){
+			nums[] += num[]
+		}
+	}
+
+	private static void solve() {
+		
+	}
+
+	private static void disp() {
+		
+	}
+}

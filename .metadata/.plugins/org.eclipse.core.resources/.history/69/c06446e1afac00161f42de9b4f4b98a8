@@ -1,0 +1,33 @@
+package me.hekuan;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+
+@SuppressWarnings("serial")
+public class Food extends Point {
+
+	public boolean isSnakeEatFood(Snake snake) {
+		System.out.println("Snake isSnakeEatFood");
+
+		return this.equals(snake.getHead());
+
+	}
+
+	public void drawMe(Graphics graphics) {
+		System.out.println("Food drawMe");
+
+		// 画出食物的格子
+		System.out.println("Food---x=" + x + " y=" + y);
+		graphics.setColor(Color.green);
+		graphics.fill3DRect(x * Global.CELL_SIZE, y * Global.CELL_SIZE, Global.CELL_SIZE, Global.CELL_SIZE, true);
+	}
+
+	public void newFood(Point p) {
+		System.out.println("newFood---x=" + p.x + " y=" + p.y);
+		x = p.x;
+		y = p.y;
+		this.setLocation(p);
+	}
+
+}

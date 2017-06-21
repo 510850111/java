@@ -1,0 +1,44 @@
+package test;
+
+public class a {
+
+	public static void main(String[] args) {
+		
+	}
+
+}
+
+class Computer {
+	String band = "";
+	String type = "";
+	int price = 0 ;
+	int memorySize = 0 ;
+	
+	public String getBand() {
+		return band;
+	}
+	public void setBand(String band) {
+		this.band = band;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public int getMemorySize() {
+		return memorySize;
+	}
+	public void setMemorySize(int memorySize) {
+		this.memorySize = memorySize;
+	}
+	
+
+	
+}

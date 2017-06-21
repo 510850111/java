@@ -1,0 +1,21 @@
+
+
+public class TEXT4 {
+	public static void main(String[] args) {
+		init();
+		solve();
+		disp();
+	}
+
+	private static void init() {
+		
+	}
+
+	private static void solve() {
+		
+	}
+
+	private static void disp() {
+		
+	}
+}

@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+
+
+public class TEXT5 {
+	public static void main(String[] args) {
+		int i = input();
+		Fib(i);
+		disp(i);
+	}
+
+	private static int input() {
+		Scanner sc = new Scanner(System.in);
+		int i = sc.nextInt();
+		return i;
+	}
+
+	private static int Fib(int i) {
+		if (i == 0) return 0;
+		else if (i == 1) return 1;
+		else  return Fib(i - 1) + Fib(i - 2);
+	}
+
+	private static void disp(int i) {
+		System.out.printf("%d ",i);
+		
+	}
+}

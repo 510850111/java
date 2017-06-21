@@ -1,0 +1,47 @@
+package me.hekuan;
+
+import java.awt.BorderLayout;
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class Main extends Frame {
+	
+	public static void main(String[] args) {
+		
+		init();
+	}
+	
+	/**
+	 * 初始化贪吃蛇的图形界面,包括Frame的大小和其他属性,监听键盘等等事件
+	 */
+	public static   void init( ) {
+		Snake snake = new Snake();	
+		Food food = new Food();
+		Ground ground = new Ground();
+		GamePanel gamePanel = new GamePanel();
+		Controller controller = new Controller(snake,food,ground,gamePanel);
+		
+		while(snake == null || food == null || ground == null || gamePanel == null || controller == null){
+			continue;
+		}
+		
+		final  JFrame frame = new JFrame("贪吃蛇0.0r01");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1005,995);
+		
+		frame.add(gamePanel,BorderLayout.CENTER);
+		gamePanel.addKeyListener(controller);
+		snake.addSnakleListener(controller);
+		
+		frame.addKeyListener(controller);
+		
+		UI.setJFrameLocateCenter(frame);
+
+		frame.setResizable(false);
+		frame.setVisible(true);
+		controller.newGame();	
+	}
+	
+}

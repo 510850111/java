@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jButtonCloseFrame" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jButtonReSet" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonSetSnakeBodyColor" max="32767" attributes="0"/>
+                          <Component id="jButtonSetBgColor" linkSize="1" alignment="0" pref="150" max="32767" attributes="0"/>
+                          <Component id="jButtonSetGroundColor" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="98" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonSetFoodColor" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonSetSnakeHeadColor" linkSize="1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jButtonSetGriddingColor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jCheckBoxShowTableLine" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSliderControlSpeed" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jSpinner" min="-2" pref="67" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonSetBgColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSetFoodColor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonSetSnakeBodyColor" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSetSnakeHeadColor" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonSetGriddingColor" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonSetGroundColor" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jButtonReSet" linkSize="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jCheckBoxShowTableLine" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jLabel1" max="32767" attributes="0"/>
+                      <Component id="jSliderControlSpeed" linkSize="3" min="-2" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jSpinner" linkSize="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jButtonCloseFrame" min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="jButtonSetSnakeBodyColor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;&#x86c7;&#x8eab;&#x989c;&#x8272;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSetSnakeBodyColorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSetSnakeHeadColor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;&#x86c7;&#x5934;&#x989c;&#x8272;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSetSnakeHeadColorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSetBgColor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;&#x80cc;&#x666f;&#x989c;&#x8272;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSetBgColorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSetFoodColor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;&#x98df;&#x7269;&#x989c;&#x8272;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSetFoodColorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jCheckBoxShowTableLine">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x663e;&#x793a;&#x7f51;&#x683c;&#x7ebf;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonReSet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x6062;&#x590d;&#x9ed8;&#x8ba4;&#x8bbe;&#x7f6e;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8d2a;&#x5403;&#x86c7;&#x901f;&#x5ea6;(ms)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSlider" name="jSliderControlSpeed">
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderControlSpeedStateChanged"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderControlSpeedMousePressed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSpinner" name="jSpinner">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSetGriddingColor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;&#x7f51;&#x683c;&#x989c;&#x8272;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonSetGroundColor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;&#x56f4;&#x5899;&#x989c;&#x8272;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonCloseFrame">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x786e;&#x5b9a;"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>

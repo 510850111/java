@@ -1,0 +1,13 @@
+package test;
+
+public class c {
+
+	public static void main(String[] args) {
+		int n = 50;
+		for (int i = 0; i < n; i++) {
+			
+		}
+
+	}
+
+}

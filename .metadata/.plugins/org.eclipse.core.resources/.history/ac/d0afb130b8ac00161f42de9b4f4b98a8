@@ -1,0 +1,131 @@
+package me.hekuan;
+
+import java.awt.BorderLayout;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class Main extends Frame {
+
+	public static void main(String[] args) {
+
+		init();
+	}
+
+	/**
+	 * 初始化贪吃蛇的图形界面,包括Frame的大小和其他属性,监听键盘等等事件
+	 */
+	public static void init() {
+		Snake snake = new Snake();
+		Food food = new Food();
+		Ground ground = new Ground();
+		GamePanel gamePanel = new GamePanel();
+		Controller controller = new Controller(snake, food, ground, gamePanel);
+
+		while (snake == null || food == null || ground == null || gamePanel == null || controller == null) {
+			continue;
+		}
+
+		final JFrame frame = new JFrame("贪吃蛇0.0r01");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1005, 995);
+
+		frame.add(gamePanel, BorderLayout.CENTER);
+		
+		jMenu1 = new javax.swing.JMenu();
+        new javax.swing.JPopupMenu();
+        new javax.swing.JPopupMenu();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuFile = new javax.swing.JMenu();
+        StartNewGame = new javax.swing.JMenuItem();
+        jMenuItemExit = new javax.swing.JMenuItem();
+        jMenuSetting = new javax.swing.JMenu();
+        jMenuItemOpenControlPanel = new javax.swing.JMenuItem();
+        jMenuHelp = new javax.swing.JMenu();
+        jMenuItemHelpDocument = new javax.swing.JMenuItem();
+        jMenuItemAboutAuther = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jMenuFile.setText("文件");
+        jMenuFile.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+
+        StartNewGame.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        StartNewGame.setText("开始新游戏");
+        StartNewGame.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			Main.init();
+				
+			}
+		});
+        jMenuFile.add(StartNewGame);
+
+        jMenuItemExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemExit.setText("退出");
+        jMenuItemExit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+		});
+        jMenuFile.add(jMenuItemExit);
+
+        jMenuBar1.add(jMenuFile);
+
+        jMenuSetting.setText("设置");
+        jMenuSetting.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+
+        jMenuItemOpenControlPanel.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemOpenControlPanel.setText("打开控制面板");
+        jMenuItemOpenControlPanel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ControlPanel controlPanel = new ControlPanel();
+				controlPanel.setVisible(true);
+				
+			}
+		});
+        jMenuSetting.add(jMenuItemOpenControlPanel);
+
+        jMenuBar1.add(jMenuSetting);
+
+        jMenuHelp.setText("帮助");
+        jMenuHelp.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+
+        jMenuItemHelpDocument.setText("帮助文件");
+        jMenuHelp.add(jMenuItemHelpDocument);
+
+        jMenuItemAboutAuther.setText("关于作者");
+        jMenuHelp.add(jMenuItemAboutAuther);
+
+        jMenuBar1.add(jMenuHelp);
+
+        setJMenuBar(jMenuBar1);
+		
+		
+		
+		
+		
+		gamePanel.addKeyListener(controller);
+		snake.addSnakleListener(controller);
+
+		frame.addKeyListener(controller);
+
+		UI.setJFrameLocateCenter(frame);
+
+		frame.setResizable(false);
+		frame.setVisible(true);
+		controller.newGame();
+	}
+	
+
+}

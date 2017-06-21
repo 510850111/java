@@ -1,0 +1,46 @@
+package me.hekuan;
+
+import java.awt.BorderLayout;
+import java.awt.Frame;
+
+import javax.swing.JFrame;
+
+@SuppressWarnings("serial")
+public class Main extends Frame {
+	
+	public static void main(String[] args) {
+		
+		init();
+	}
+	
+	public static   void init( ) {
+		Snake snake = new Snake();	
+		Food food = new Food();
+		Ground ground = new Ground();
+		GamePanel gamePanel = new GamePanel();
+		Controller controller = new Controller(snake,food,ground,gamePanel);
+		
+		while(snake == null || food == null || ground == null || gamePanel == null || controller == null){
+			continue;
+		}
+		
+		final  JFrame frame = new JFrame("Ã∞≥‘…ﬂ0.0r01");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(gamePanel.getSize().width+10, gamePanel.getSize().height+35);
+//		frame.setSize(Global.WIDTH*Global.CELL_SIZE, Global.HEIGHT*Global.CELL_SIZE);
+		frame.setSize(1005,995);
+		
+		frame.add(gamePanel,BorderLayout.CENTER);
+		gamePanel.addKeyListener(controller);
+		snake.addSnakleListener(controller);
+		
+		frame.addKeyListener(controller);
+		
+		UI.setJFrameLocateCenter(frame);
+
+		frame.setResizable(false);
+		frame.setVisible(true);
+		controller.newGame();	
+	}
+	
+}

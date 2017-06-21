@@ -1,0 +1,221 @@
+package me.hekuan;
+
+import java.awt.Color;
+import javax.swing.JColorChooser;
+
+
+
+/**
+ *
+ * @author Oscar
+ */
+@SuppressWarnings("serial")
+public class ControlPanel extends javax.swing.JFrame {
+
+    public ControlPanel() {
+        initComponents();
+        init();
+    }
+    
+    public void init(){
+        jSliderControlSpeed = new javax.swing.JSlider(100,1200);
+        this.setTitle("贪吃控制面板");
+    	this.setResizable(false);
+        UI.setJFrameLocateCenter(this);
+    }
+
+                     
+    private void initComponents() {
+
+        jButtonSetSnakeBodyColor = new javax.swing.JButton();
+        jButtonSetSnakeHeadColor = new javax.swing.JButton();
+        jButtonSetBgColor = new javax.swing.JButton();
+        jButtonSetFoodColor = new javax.swing.JButton();
+        jCheckBoxShowTableLine = new javax.swing.JCheckBox();
+        jButtonReSet = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSliderControlSpeed = new javax.swing.JSlider();
+        jSpinner = new javax.swing.JSpinner();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jButtonSetSnakeBodyColor.setText("设置蛇身颜色");
+        jButtonSetSnakeBodyColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetSnakeBodyColorActionPerformed(evt);
+            }
+        });
+
+        jButtonSetSnakeHeadColor.setText("设置蛇头颜色");
+        jButtonSetSnakeHeadColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetSnakeHeadColorActionPerformed(evt);
+                Color foodColor = JColorChooser.showDialog(
+						ControlPanel.this, "请选择食物的颜色", Color.DARK_GRAY);
+            }
+        });
+
+
+        jButtonSetBgColor.setText("设置背景颜色");
+        jButtonSetBgColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetBgColorActionPerformed(evt);
+            }
+        });
+
+        jButtonSetFoodColor.setText("设置食物颜色");
+        jButtonSetFoodColor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSetFoodColorActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxShowTableLine.setText("显示网格线");
+
+        jButtonReSet.setText("恢复默认设置");
+
+        jLabel1.setText("贪吃蛇速度(ms)");
+
+        jSliderControlSpeed.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderControlSpeedStateChanged(evt);
+            }
+        });
+        jSliderControlSpeed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jSliderControlSpeedMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonReSet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonSetSnakeBodyColor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSetSnakeHeadColor))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonSetBgColor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSetFoodColor))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBoxShowTableLine)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSliderControlSpeed, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(50, 50, 50))
+        );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButtonSetBgColor, jButtonSetFoodColor, jButtonSetSnakeBodyColor, jButtonSetSnakeHeadColor});
+
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSetBgColor)
+                    .addComponent(jButtonSetFoodColor))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonSetSnakeBodyColor)
+                    .addComponent(jButtonSetSnakeHeadColor))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSliderControlSpeed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSpinner, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jCheckBoxShowTableLine)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonReSet)
+                .addGap(26, 26, 26))
+        );
+
+        pack();
+    }// </editor-fold>                        
+
+    private void jButtonSetBgColorActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        callSetColor("设置背景颜色");
+//        this.dispose();
+    }                                                 
+
+    private void jButtonSetFoodColorActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        callSetColor("设置食物颜色");
+    }                                                   
+
+    private void jButtonSetSnakeBodyColorActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+        callSetColor("设置贪吃蛇身体颜色");
+    }                                                        
+
+    private void jButtonSetSnakeHeadColorActionPerformed(java.awt.event.ActionEvent evt) {                                                         
+        callSetColor("设置贪吃蛇头部颜色");
+    }                                                        
+
+    private void jSliderControlSpeedStateChanged(javax.swing.event.ChangeEvent evt) {                                                 
+        jSpinner.setValue(jSliderControlSpeed.getValue());
+    }                                                
+
+    private void jSliderControlSpeedMousePressed(java.awt.event.MouseEvent evt) {                                                 
+       jSpinner.setValue(jSliderControlSpeed.getValue());
+    }                                                
+
+    private void callSetColor(String title){
+    	Color foodColor = JColorChooser.showDialog(
+				ControlPanel.this, title, Color.DARK_GRAY);
+    }
+    
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void _main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ControlPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ControlPanel().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButtonReSet;
+    private javax.swing.JButton jButtonSetBgColor;
+    private javax.swing.JButton jButtonSetFoodColor;
+    private javax.swing.JButton jButtonSetSnakeBodyColor;
+    private javax.swing.JButton jButtonSetSnakeHeadColor;
+    private javax.swing.JCheckBox jCheckBoxShowTableLine;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSlider jSliderControlSpeed;
+    private javax.swing.JSpinner jSpinner;
+    // End of variables declaration                   
+}
+

@@ -1,0 +1,210 @@
+package me.hekuan;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Set;
+
+public class Snake {
+
+	public static final int UP = -1;
+	public static final int DOWN = 1;
+	public static final int LEFT = 2;
+	public static final int RIGHT = -2;
+
+	private int preDirection;
+	private int newDirection;
+	
+	private boolean life ;
+	
+	//保存原来的尾巴
+	private Point preTail;
+
+	Global global = new Global();
+	Food food = new Food();
+
+	// 注册多个监听器
+	private Set<SnakeListener> listeners = new HashSet<SnakeListener>();
+
+	// 用集合保存蛇的数据(蛇头,蛇身,蛇尾等)
+	// 采用去尾加头的方式来表示蛇的移动
+	private LinkedList<Point> body = new LinkedList<Point>();
+
+	public Snake() {
+		init();
+	}
+
+	public void init() {
+
+		life = true;
+		
+		// 获取整个屏幕最中心的点
+
+		int x = Global.WIDTH / 2;
+		int y = Global.HEIGHT / 2;
+
+		// int x = 20;
+		// int y = 20;
+
+		for (int i = 0; i < 3; i++) {
+			body.addLast(new Point(x--, y));
+		}
+		newDirection = preDirection = RIGHT;
+	}
+
+	public void move() {
+		System.out.println("Snake move");
+
+		// 判断方向是否相反
+		if (preDirection + newDirection != 0) {
+			preDirection = newDirection;
+		}
+
+		// 1.去尾
+		preTail =  body.removeLast();
+
+		// 原来蛇头的坐标
+		int x = body.getFirst().x;
+		int y = body.getFirst().y;
+
+		// 根据蛇的方向来计算新蛇头的坐标
+		switch (preDirection) {
+		case UP:
+			y--;
+			if (y <= 0) {
+				y = Global.HEIGHT - 1;
+			}
+			break;
+		case DOWN:
+			y++;
+			if (y >= Global.HEIGHT) {
+				y = 1;
+			}
+			break;
+		case LEFT:
+			x--;
+			if (x <= -1) {
+				x = Global.WIDTH;
+			}
+			break;
+		case RIGHT:
+			x++;
+			if (x >= Global.WIDTH)  {
+				x = 0;
+			}
+			break;
+
+		default:
+			break;
+		}
+
+		Point newHead = new Point(x, y);
+
+		System.out.println("x=" + x + " y=" + y);
+
+		// 2.加头
+		body.addFirst(newHead);
+	}
+
+	public void changeDirection(int direction) {
+		System.out.println("Snake change direction");
+		// if (direction + this.direction != 0) {
+		newDirection = direction;
+		// }
+		// this.direction = direction;
+
+	}
+
+	public void eatFood() {
+		System.out.println("Snake eat food");
+		
+		body.addLast(preTail);
+	}
+
+	public boolean isEatBody() {
+		System.out.println("Snake isEatBody");
+		
+		for(int i = 1;i<body.size();i++){
+			if (body.get(i).equals(getHead())) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	public void die() {
+
+		life = false;
+		
+	}
+
+	public void drawMe(Graphics g) {
+		System.out.println("Snake drawMe");
+		g.setColor(Color.BLUE);
+		
+		// 画出所有的坐标
+		for (Point point : body) {
+			g.fill3DRect(point.x * Global.CELL_SIZE, point.y * Global.CELL_SIZE, Global.CELL_SIZE, Global.CELL_SIZE,
+					true);
+		}
+	}
+
+	public void clearPrevoiousFilled(Graphics g) {
+		// 清除之前画的坐标
+		// g.clearRect(0, 0, Global.WIDTH, Global.HEIGHT);
+		g.clearRect(0, 0, 1000, 1000);
+	}
+
+	private class SnakeDriver implements Runnable {
+		private long millis;
+
+		public SnakeDriver(long millis) {
+			this.setMillis(millis);
+			run();
+		}
+
+		public void run() {
+			while (life) {
+				System.out.println("---------------------------");
+				
+				move();
+				isEatBody();
+				for (SnakeListener listener : listeners) {
+					listener.snakeMoved(Snake.this);
+				}
+				try {
+					Thread.sleep(getMillis());
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		public long getMillis() {
+			return millis;
+		}
+
+		public void setMillis(long millis) {
+			this.millis = millis;
+		}
+	}
+
+	public void addSnakleListener(SnakeListener listener) {
+		if (listener != null) {
+			this.listeners.add(listener);
+		}
+	}
+
+	public void start() {
+		long millis = 100;
+		new Thread(new SnakeDriver(millis));
+		System.out.println("-------------------------------");
+	}
+
+	public Point getHead() {
+		return body.getFirst();
+	}
+}

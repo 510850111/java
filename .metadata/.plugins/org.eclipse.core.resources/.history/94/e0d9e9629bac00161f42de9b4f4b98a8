@@ -1,0 +1,8 @@
+package me.hekuan;
+
+import javax.swing.JFrame;
+
+public class ControlPanelFrame {
+	JFrame jFrame  = new JFrame("Ã∞≥‘…ﬂøÿ÷∆√Ê∞Â");
+	
+}

@@ -1,0 +1,196 @@
+package explore;
+import java.awt.BorderLayout; 
+import java.awt.Color; 
+import java.awt.Container; 
+import java.awt.FileDialog; 
+import java.awt.FlowLayout; 
+import java.awt.event.ActionEvent; 
+import java.awt.event.ActionListener; 
+import java.io.IOException; 
+import java.net.URL; 
+import javax.swing.JButton; 
+import javax.swing.JEditorPane; 
+import javax.swing.JFrame; 
+import javax.swing.JLabel; 
+import javax.swing.JMenu; 
+import javax.swing.JMenuBar; 
+import javax.swing.JMenuItem; 
+import javax.swing.JOptionPane; 
+import javax.swing.JPanel; 
+import javax.swing.JScrollPane; 
+import javax.swing.JTextField; 
+import javax.swing.JViewport; 
+import javax.swing.event.HyperlinkEvent; 
+import javax.swing.event.HyperlinkListener; 
+import javax.swing.text.html.HTMLDocument; 
+import javax.swing.text.html.HTMLFrameHyperlinkEvent; 
+ 
+ 
+public class Browser extends JFrame implements ActionListener { 
+ 
+    private Container contentPane; 
+    // 文本框  
+    private JTextField addressTex; 
+    private JLabel statusLbl; 
+    // 初始化滚动条  
+    private JScrollPane centerPane; 
+    // 编辑显示区域  
+    private JEditorPane textArea; 
+    private JMenuBar munubar; 
+ 
+    private JButton btgoto, btback; 
+    private JMenu filemenu; 
+    // 菜单项  
+    private JMenuItem itemopen, itemquit; 
+ 
+    public Browser() { 
+         
+        super("Java 简化版浏览器"); 
+        setBounds(120, 80, 750, 500); 
+        setDefaultCloseOperation(this.EXIT_ON_CLOSE); 
+        contentPane = this.getContentPane(); 
+         
+        // 初始化菜单栏  
+        munubar = new JMenuBar(); 
+        setJMenuBar(munubar); 
+        // 初始化菜单  
+        filemenu = new JMenu("文件"); 
+        // 将菜单加入菜单栏  
+        munubar.add(filemenu); 
+ 
+        // 初始化菜单项  
+        itemopen = new JMenuItem("打开"); 
+        itemopen.addActionListener(this); 
+        itemquit = new JMenuItem("关闭"); 
+        itemquit.addActionListener(this); 
+        // 将菜单项加入到file菜单  
+        filemenu.add(itemopen); 
+        filemenu.add(itemquit); 
+ 
+        contentPane.setLayout(new BorderLayout()); 
+        // 地址栏  
+        addressTex = new JTextField(40);         
+ 
+        btgoto = new JButton("转到"); 
+        btgoto.addActionListener(this); 
+        btback = new JButton("返回"); 
+        btback.addActionListener(this); 
+        JPanel toolpanel = new JPanel(); 
+        // 设置颜色  
+        toolpanel.setBackground(Color.pink); 
+        toolpanel.setLayout(new FlowLayout()); 
+        toolpanel.add(btback); 
+        toolpanel.add(addressTex); 
+        toolpanel.add(btgoto); 
+ 
+        contentPane.add(toolpanel, BorderLayout.NORTH); 
+ 
+        // 状态栏  
+        statusLbl = new JLabel("status: "); 
+        contentPane.add(statusLbl, BorderLayout.SOUTH); 
+        // 浏览器体部  
+        centerPane = new JScrollPane(); 
+        // 显示区域  
+        JViewport view = centerPane.getViewport(); 
+        // 内容显示  
+        textArea = new JEditorPane(); 
+        // 监听超链接,使其生效  
+        textArea.addHyperlinkListener(new HyperlinkListener() { 
+            public void hyperlinkUpdate(HyperlinkEvent e) { 
+                if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) { 
+                    JEditorPane pane = (JEditorPane) e.getSource(); 
+                    statusLbl.setText(e.getURL().toString()); 
+                    if (e instanceof HTMLFrameHyperlinkEvent) { 
+                        HTMLFrameHyperlinkEvent evt = (HTMLFrameHyperlinkEvent) e; 
+                        HTMLDocument doc = (HTMLDocument) pane.getDocument(); 
+                        doc.processHTMLFrameHyperlinkEvent(evt); 
+                    } else { 
+                        try { 
+                            pane.setPage(e.getURL()); 
+                        } catch (Throwable t) { 
+                            t.printStackTrace(); 
+                        } 
+                    } 
+                } 
+            } 
+        }); 
+        addressTex.setText("http://blog.sina.com.cn/myhrr"); 
+        // 设置不可写操作http://www.baidu.com/  
+        textArea.setEditable(false); 
+        view.add(textArea); 
+        contentPane.add(centerPane); 
+ 
+    } 
+ 
+    public void actionPerformed(ActionEvent e) { 
+         
+        //“转到”操作  
+        if (e.getSource() == btgoto) { 
+            String address = addressTex.getText().trim(); 
+            statusLbl.setText(address); 
+            try { 
+                if (addressTex.getText().length() > 0 
+                        && (addressTex.getText().startsWith("http://"))||addressTex.getText
+().startsWith("file:")) 
+                   textArea.setPage(address); 
+                else if (addressTex.getText().length() > 0 
+                        && !addressTex.getText().startsWith("http://")) { 
+                    String newURL = ""; 
+                    newURL = "http://" + addressTex.getText(); 
+                    URL newurl = new URL(newURL); 
+                    addressTex.setText(newURL); 
+                    textArea.setPage(newurl); 
+                } 
+            } catch (IOException e1) { 
+                e1.printStackTrace(); 
+            } 
+        }// end btgoto  
+ 
+        //“返回”操作  
+        if (e.getSource() == btback) { 
+            String address = addressTex.getText().trim(); 
+            try { 
+                if (addressTex.getText().length() > 0 
+                        && addressTex.getText().startsWith("http://")) 
+                    textArea.setPage(address); 
+                else if (addressTex.getText().length() > 0 
+                        && !addressTex.getText().startsWith("http://")) { 
+                    String newURL = ""; 
+                    newURL = "http://" + addressTex.getText();// 加http: 
+                    textArea.setPage(newURL); 
+                } 
+            } catch (IOException e1) { 
+                e1.printStackTrace(); 
+            } 
+        }// end btback  
+         
+        //“打开”操作  
+        if(e.getSource()==itemopen){ 
+             
+           FileDialog fd = new FileDialog(new JFrame(), "Open a file", 
+                    FileDialog.LOAD); 
+            fd.setVisible(true); 
+            String name = fd.getFile();          
+            try { 
+                URL url = new URL("file" + ":///" + fd.getDirectory() + name); 
+                addressTex.setText(url.toString()); 
+            } catch (Exception e1) { 
+                JOptionPane.showMessageDialog(null, "打开失败!", "openopen打开文件", 
+                        JOptionPane.ERROR_MESSAGE); 
+            } 
+             
+        }//end itemopen  
+         
+        //“退出”操作  
+        if(e.getSource()==itemquit){ 
+            System.exit(0); 
+        }//end itemquit  
+         
+    }//end actionPerformed  
+     
+     
+    public static void main(String[] args) { 
+        Browser bro = new Browser(); 
+        bro.setVisible(true); 
+    } 
+} 
